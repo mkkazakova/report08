@@ -64,3 +64,97 @@ WORKDIR /server/
 ```
 No one knows as mush as I don't.
 ```
+
+
+### Action
+
+В папке /.github/workflows создаём файл Action.yml
+
+Содержимое Action.yml:
+
+```
+name: Docker Compose
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker images
+      run: docker-compose build
+
+    - name: Push Docker images
+      run: docker-compose push
+
+    - name: Deploy with Docker Compose
+      run: docker-compose up -d
+```
+
+
+### docker-compose.yml
+
+Содержимое docker-compose.yml:
+
+```
+version: "3"
+
+services:
+
+  server:
+
+    build: server/
+    command: python ./server.py
+    ports:
+      - 56665:56665
+
+  client:
+
+    build: client/
+    command: python ./client.py
+    network_mode: host
+    depends_on:
+      - server
+```
+### test
+
+Выполняем следующие действия в папке lab-08.
+
+```
+$ docker-compose build
+$ docker-compose up
+```
+
+### Docker
+
+Зарегестрироваться на сайте https://hub.docker.com
+
+В лабе на github.com: setting -> Secrets and variables -> Actions -> New repository secret
+
+name: DOCKER_USERNAME
+
+secret: логин от Docker Hub
+
+Снова New repository secret
+
+name: DOCKER_PASSWORD
+
+secret: пароль от Docker Hub 
+
+
+## Скрины
+
