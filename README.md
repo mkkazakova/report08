@@ -98,9 +98,6 @@ jobs:
     - name: Build Docker images
       run: docker-compose build
 
-    - name: Push Docker images
-      run: docker-compose push
-
     - name: Deploy with Docker Compose
       run: docker-compose up -d
 ```
