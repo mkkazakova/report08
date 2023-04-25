@@ -129,6 +129,14 @@ services:
 ```
 ### test
 
+```
+sudo snap install docker
+```
+
+Следует проверить наличие у текущего пользователя прав на выполнение команд Docker, 
+а также выполнить команду ```sudo usermod -aG docker $USER```, 
+после чего перезагрузиться или выполнить ```newgrp docker```. 
+
 Выполняем следующие действия в папке lab-08.
 
 ```
@@ -136,22 +144,42 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+![image](https://user-images.githubusercontent.com/125077130/234293176-30314658-97db-4dd0-b64c-fbc71c63ebe4.png)
+
+
 ### Docker
 
-Зарегестрироваться на сайте https://hub.docker.com
+Зарегестрироваться на сайте https://hub.docker.com В лабе на github.com: setting -> Secrets and variables -> Actions -> New repository secret
 
-В лабе на github.com: setting -> Secrets and variables -> Actions -> New repository secret
-
-name: DOCKER_USERNAME
+name: ```DOCKER_USERNAME```
 
 secret: логин от Docker Hub
 
 Снова New repository secret
 
-name: DOCKER_PASSWORD
+name: ```DOCKER_PASSWORD```
 
 secret: пароль от Docker Hub 
 
 
+```
+$ git add .
+$ git commit -m "add all"
+$ git push origin master
+```
+
 ## Скрины
 
+![image](https://user-images.githubusercontent.com/125077130/234292482-30444696-bc32-4b93-a02f-32e428662cb6.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234292535-1421bcd8-6545-4872-b965-2b45c8a52c2b.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234292676-33766f6c-54c8-446c-89a2-f6c98ce78762.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234292729-60b965ef-9dac-4e75-b2a3-f7ebe1269314.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234292864-be9f1d9f-6637-4efb-a6f3-127276c9b2e2.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234292937-34480f26-c1ac-40ba-a234-664184fb696c.png)
+
+![image](https://user-images.githubusercontent.com/125077130/234293554-0582236e-1b06-449a-ac35-3ef3f9d21e58.png)
